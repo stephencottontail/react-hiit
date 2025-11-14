@@ -15,6 +15,7 @@ dist-ssr
 *.bak
 
 # Editor directories and files
+.teco-*
 .vscode/*
 !.vscode/extensions.json
 .idea
