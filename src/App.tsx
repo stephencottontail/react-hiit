@@ -1,4 +1,8 @@
+import { Controls } from './layout';
+import { createControlsState } from './utils';
+
 const App = () => {
+  const controls = createControlsState();
   const className = "react-hiit";
 
   return (
@@ -9,9 +13,10 @@ const App = () => {
       <div className={`${className}__options`}>
         <p>{`${className}__options`}</p>
       </div>
-      <div className={`${className}__controls`}>
-        <p>{`${className}__controls`}</p>
-      </div>
+      <Controls
+        className={`${className}__controls`}
+        {...controls}
+      />
     </div>
   );
 };
