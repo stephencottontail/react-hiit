@@ -1,4 +1,4 @@
-import { Select } from '../components';
+import { Button, Select } from '../components';
 import { createControlsState } from '../utils';
 
 type ControlsProps = ReturnType<typeof createControlsState> & {
@@ -6,7 +6,17 @@ type ControlsProps = ReturnType<typeof createControlsState> & {
 };
 
 export const Controls = (props: ControlsProps) => {
-  const { className, cycles, setCycles, work, setWork, ratio, setRatio } = props;
+  const {
+    className,
+    cycles,
+    setCycles,
+    work,
+    setWork,
+    ratio,
+    setRatio,
+    isPlaying,
+    setIsPlaying,
+  } = props;
 
   return (
     <div
@@ -59,6 +69,24 @@ export const Controls = (props: ControlsProps) => {
           ]}
         />
       </label>
+      <div
+        className={`${className}__buttons`}
+      >
+         <Button
+          className={`${className}__button`}
+          label='Stop'
+          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsPlaying(false);
+          }}
+        />
+        <Button
+          className={`${className}__button`}
+          label={isPlaying ? 'Pause' : 'Play'}
+          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsPlaying(!isPlaying);
+          }}
+        />
+      </div>
     </div>
   );
 };
