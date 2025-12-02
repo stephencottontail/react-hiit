@@ -1,14 +1,44 @@
 import { Controls } from './layout';
-import { createControlsState } from './utils';
+import { Timer } from './layout/timer';
+import { calculateDuration, createControlsState, createPlayingState, createTimerState } from './utils';
+import { useEffect, useRef } from 'react';
 
 const App = () => {
   const controls = createControlsState();
+  const playing = createPlayingState();
+  const timer = createTimerState();
+
   const className = "react-hiit";
+
+  useEffect(() => {
+    if (playing.isPlaying) {
+      const tick = () => {
+        timer.setElapsed(prev => {
+          const now = Date.now();
+          const interval = now - timer.referenceTime;
+          timer.setReferenceTime(now);
+
+          return prev + interval;
+        });
+      }
+
+      timer.timeout.current = setTimeout(tick, 10);
+    }
+  }, [playing.isPlaying, timer.elapsed]);
+
+  useEffect(() => {
+    if (Math.trunc(timer.elapsed / 1000) === duration.ticks[0]) {
+      console.log('threshold');
+    }
+  }, [timer.elapsed]);
 
   return (
     <div className={className}>
-      <div className={`${className}__timer`}>
-        <p>{`${className}__timer`}</p>
+      <Timer
+        className={`${className}__timer`}
+        duration={duration}
+        {...timer}
+      />
       </div>
       <div className={`${className}__options`}>
         <p>{`${className}__options`}</p>
