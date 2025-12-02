@@ -1,7 +1,4 @@
-type Duration = {
-  ticks: Array<number>;
-  total: number;
-};
+import { type Duration } from '../types/Duration';
 
 export const calculateDuration = (cycles: number, work: number, ratio: number): Duration => {
   let ticks: Array<number> = [];
