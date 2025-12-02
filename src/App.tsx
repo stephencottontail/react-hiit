@@ -1,7 +1,8 @@
+import { Button } from './components';
 import { Controls } from './layout';
 import { Timer } from './layout/timer';
 import { calculateDuration, createControlsState, createPlayingState, createTimerState } from './utils';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 const App = () => {
   const controls = createControlsState();
@@ -9,6 +10,11 @@ const App = () => {
   const timer = createTimerState();
 
   const className = "react-hiit";
+  const duration = calculateDuration(
+    Number(controls.cycles),
+    Number(controls.work),
+    Number(controls.ratio)
+  );
 
   useEffect(() => {
     if (playing.isPlaying) {
@@ -39,6 +45,31 @@ const App = () => {
         duration={duration}
         {...timer}
       />
+      <div
+        className={`${className}__buttons`}
+      >
+        <Button
+          className={`${className}__button`}
+          label='Stop'
+          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+            playing.setIsPlaying(false);
+            timer.setElapsed(0);
+            timer.setReferenceTime(Date.now());
+            clearTimeout(timer.timeout.current);
+          }}
+        />
+        <Button
+          className={`${className}__button`}
+          label={playing.isPlaying ? 'Pause' : 'Play'}
+          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+            playing.setIsPlaying(!playing.isPlaying);
+
+            if (!playing.isPlaying) {
+              timer.setReferenceTime(Date.now());
+              clearTimeout(timer.timeout.current);
+            }
+          }}
+        />
       </div>
       <div className={`${className}__options`}>
         <p>{`${className}__options`}</p>
