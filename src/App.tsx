@@ -3,6 +3,7 @@ import { Controls } from './layout';
 import { Timer, Timeline } from './layout/timer';
 import { calculateDuration, createControlsState, createPlayingState, createTimerState } from './utils';
 import { useEffect } from 'react';
+import './App.css';
 
 const App = () => {
   const controls = createControlsState();

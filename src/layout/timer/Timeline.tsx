@@ -13,14 +13,6 @@ type BlockProps = {
 
 const Block = (props: BlockProps) => {
   const { className, width, ratio } = props;
-  const style = {
-    borderColor: 'white',
-    borderStyle: 'solid',
-    borderWidth: '1px',
-    borderRightWidth: '0',
-    minHeight: '20px',
-  };
-
   let innerWidth: number | undefined;
   switch(ratio) {
     case 3:
@@ -40,23 +32,12 @@ const Block = (props: BlockProps) => {
     <div
       className={className}
       style={{
-        ...style,
         display: 'flex',
         width: `${width}%`,
       }}
     >
-      <div
-        style={{
-          ...style,
-          flex: `0 0 ${innerWidth}%`,
-        }}
-      />
-      <div
-        style={{
-          ...style,
-          flex: '1 0 auto',
-        }}
-      />
+      <div style={{ flex: `0 0 ${innerWidth}%` }} />
+      <div style={{ flex: '1 0 auto' }} />
     </div>
   );
 }
@@ -68,18 +49,12 @@ export const Timeline = (props: TimelineProps) => {
   return (
     <div
       className={className}
-      style={{
-        height: '20px',
-      }}
     >
       <div
         className={`${className}__track`}
-        style={{
-          position: 'relative',
-        }}
       >
-        <div className={`${className}__progress`} style={{ position: 'absolute', top: '0', left: '0', height: '24px', width: `${progress}%`, maxWidth: '100%', backgroundColor: `${isWorkInterval ? 'white' : 'red'}` }} />
-        <div className={`${className}__ticks`} style={{ position: 'absolute', display: 'flex', width: '100%', borderRight: '1px solid white' }}>
+        <div className={`${className}__progress ${isWorkInterval ? 'work' : 'rest'}`} style={{ width: `${progress}%` }} />
+        <div className={`${className}__ticks`}>
           { Array.from({ length: Number(cycles) }).map((_, i) => (
             <Block key={i} className={`${className}__block`} width={100 / Number(ratio)} ratio={Number(ratio)} />
           ))}

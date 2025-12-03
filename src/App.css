@@ -40,3 +40,41 @@
 .read-the-docs {
   color: #888;
 }
+
+.react-hiit__timeline {
+  height: 20px;
+}
+
+.react-hiit__timeline__track {
+  position: relative;
+}
+
+.react-hiit__timeline__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  max-width: 100%;
+
+  &.work {
+    background-color: blue;
+  }
+
+  &.rest {
+    background-color: white;
+  }
+}
+
+.react-hiit__timeline__ticks {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  border-right: 1px solid white;
+}
+
+.react-hiit__timeline__block {
+  border: 1px solid white;
+  border-right-width: 0;
+  height: 20px;
+}
+
