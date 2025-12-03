@@ -1,6 +1,6 @@
 import { Button } from './components';
 import { Controls } from './layout';
-import { Timer } from './layout/timer';
+import { Timer, Timeline } from './layout/timer';
 import { calculateDuration, createControlsState, createPlayingState, createTimerState } from './utils';
 import { useEffect } from 'react';
 
@@ -50,6 +50,11 @@ const App = () => {
         className={`${className}__timer`}
         duration={duration}
         {...timer}
+      />
+      <Timeline
+        className={`${className}__timeline`}
+        {...controls}
+        duration={duration}
       />
       <div
         className={`${className}__buttons`}

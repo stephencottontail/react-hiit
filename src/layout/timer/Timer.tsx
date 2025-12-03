@@ -16,9 +16,6 @@ export const Timer = (props: TimerProps) => {
       <p className={`${className}__display`}>{`${formatElapsed(elapsed)}/${duration.total}`}</p>
       { lapCount.current === duration.ticks.length && <p>All Done!</p> }
       <p>{isWorkInterval ? 'Work' : 'Rest'}</p>
-      <Timeline
-        className={`${className}__timeline`}
-      />
     </div>
   );
 }
