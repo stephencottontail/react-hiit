@@ -1,6 +1,6 @@
-import { type ControlsState, type Duration } from '../../types';
+import { type ControlsState, type TimerState, type Duration } from '../../types';
 
-type TimelineProps = ControlsState & {
+type TimelineProps = ControlsState & TimerState & {
   className: string;
   duration: Duration;
 }
@@ -62,7 +62,8 @@ const Block = (props: BlockProps) => {
 }
 
 export const Timeline = (props: TimelineProps) => {
-  const { className, cycles, ratio, duration } = props;
+  const { className, cycles, ratio, duration, elapsed, isWorkInterval } = props;
+  const progress = (elapsed / 1000) / duration.total * 100;
 
   return (
     <div
@@ -77,7 +78,7 @@ export const Timeline = (props: TimelineProps) => {
           position: 'relative',
         }}
       >
-        <div className={`${className}__progress`} style={{ position: 'absolute', top: '0', left: '0', height: '24px', width: '0%', backgroundColor: 'white' }} />
+        <div className={`${className}__progress`} style={{ position: 'absolute', top: '0', left: '0', height: '24px', width: `${progress}%`, maxWidth: '100%', backgroundColor: `${isWorkInterval ? 'white' : 'red'}` }} />
         <div className={`${className}__ticks`} style={{ position: 'absolute', display: 'flex', width: '100%', borderRight: '1px solid white' }}>
           { Array.from({ length: Number(cycles) }).map((_, i) => (
             <Block key={i} className={`${className}__block`} width={100 / Number(ratio)} ratio={Number(ratio)} />

@@ -10,15 +10,11 @@ const App = () => {
   const timer = createTimerState();
 
   const className = "react-hiit";
-  const duration = {
-    ticks: [2,4,6,8],
-    total: 8
-  };
-//   const duration = calculateDuration(
-//     Number(controls.cycles),
-//     Number(controls.work),
-//     Number(controls.ratio)
-//   );
+  const duration = calculateDuration(
+    Number(controls.cycles),
+    Number(controls.work),
+    Number(controls.ratio)
+  );
 
   useEffect(() => {
     if (playing.isPlaying) {
@@ -32,7 +28,7 @@ const App = () => {
         });
       }
 
-      timer.timeout.current = setTimeout(tick, 10);
+      timer.timeout.current = setTimeout(tick, 1);
     }
   }, [playing.isPlaying, timer.elapsed]);
 
@@ -53,8 +49,9 @@ const App = () => {
       />
       <Timeline
         className={`${className}__timeline`}
-        {...controls}
         duration={duration}
+        {...controls}
+        {...timer}
       />
       <div
         className={`${className}__buttons`}
