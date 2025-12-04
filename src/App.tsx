@@ -60,9 +60,10 @@ const App = () => {
         <Button
           className={`${className}__button`}
           label='Stop'
-          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={ () => {
             clearTimeout(timer.timeout.current);
             playing.setIsPlaying(false);
+            timer.lapCount.current = 0;
             timer.setElapsed(0);
             timer.setReferenceTime(Date.now());
             timer.setIsWorkInterval(true);
@@ -71,7 +72,7 @@ const App = () => {
         <Button
           className={`${className}__button`}
           label={playing.isPlaying ? 'Pause' : 'Play'}
-          onClick={ (event: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={ () => {
             playing.setIsPlaying(!playing.isPlaying);
 
             if (!playing.isPlaying) {
@@ -80,9 +81,6 @@ const App = () => {
             }
           }}
         />
-      </div>
-      <div className={`${className}__options`}>
-        <p>{`${className}__options`}</p>
       </div>
       <Controls
         className={`${className}__controls`}

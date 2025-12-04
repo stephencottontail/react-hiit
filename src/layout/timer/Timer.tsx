@@ -7,15 +7,14 @@ type TimerProps = TimerState & {
 }
 
 export const Timer = (props: TimerProps) => {
-  const { className, duration, elapsed, lapCount, isWorkInterval } = props;
+  const { className, duration, elapsed } = props;
 
   return (
     <div
       className={className}
     >
-      <p className={`${className}__display`}>{`${formatElapsed(elapsed)}/${duration.total}`}</p>
-      { lapCount.current === duration.ticks.length && <p>All Done!</p> }
-      <p>{isWorkInterval ? 'Work' : 'Rest'}</p>
+      <p className={`${className}__display`}>{`${formatElapsed(elapsed)}`}</p>
+      { elapsed / 1000 >= duration.total && <p className={`${className}__done}`}>Done!</p> }
     </div>
   );
 }
