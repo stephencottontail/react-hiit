@@ -42,7 +42,7 @@
 }
 
 .react-hiit__timeline {
-  height: 20px;
+  block-size: 20px;
 }
 
 .react-hiit__timeline__track {
@@ -51,10 +51,10 @@
 
 .react-hiit__timeline__progress {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 24px;
-  max-width: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  block-size: 24px;
+  max-inline-size: 100%;
 
   &.work {
     background-color: blue;
@@ -68,13 +68,13 @@
 .react-hiit__timeline__ticks {
   position: absolute;
   display: flex;
-  width: 100%;
-  border-right: 1px solid white;
+  inline-size: 100%;
+  border-inline-end: 1px solid white;
 }
 
 .react-hiit__timeline__block {
   border: 1px solid white;
-  border-right-width: 0;
-  height: 20px;
+  border-inline-end-width: 0;
+  block-size: 20px;
 }
 

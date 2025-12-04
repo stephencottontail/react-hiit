@@ -33,7 +33,7 @@ const Block = (props: BlockProps) => {
       className={className}
       style={{
         display: 'flex',
-        width: `${width}%`,
+        inlineSize: `${width}%`,
       }}
     >
       <div className={className} style={{ flex: `0 0 ${innerWidth}%` }} />
@@ -53,7 +53,7 @@ export const Timeline = (props: TimelineProps) => {
       <div
         className={`${className}__track`}
       >
-        <div className={`${className}__progress ${isWorkInterval ? 'work' : 'rest'}`} style={{ width: `${progress}%` }} />
+        <div className={`${className}__progress ${isWorkInterval ? 'work' : 'rest'}`} style={{ inlineSize: `${progress}%` }} />
         <div className={`${className}__ticks`}>
           { Array.from({ length: Number(cycles) }).map((_, i) => (
             <Block key={i} className={`${className}__block`} width={100 / Number(ratio)} ratio={Number(ratio)} />
