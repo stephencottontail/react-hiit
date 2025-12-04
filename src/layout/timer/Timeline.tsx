@@ -36,8 +36,8 @@ const Block = (props: BlockProps) => {
         width: `${width}%`,
       }}
     >
-      <div style={{ flex: `0 0 ${innerWidth}%` }} />
-      <div style={{ flex: '1 0 auto' }} />
+      <div className={className} style={{ flex: `0 0 ${innerWidth}%` }} />
+      <div className={className} style={{ flex: '1 0 auto' }} />
     </div>
   );
 }
